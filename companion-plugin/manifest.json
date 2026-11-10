@@ -1,0 +1,10 @@
+{
+  "id": "craft-style-companion",
+  "name": "Craft Style Companion",
+  "version": "1.0.0",
+  "minAppVersion": "1.15.0",
+  "description": "Adds the parts of the Craft Style theme that CSS cannot do: code line numbers, the sidebar document header and lens refraction.",
+  "author": "Khoa Le",
+  "isDesktopOnly": true,
+  "authorUrl": "https://github.com/ldakhoa"
+}

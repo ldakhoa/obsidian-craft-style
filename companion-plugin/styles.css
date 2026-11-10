@@ -1,0 +1,144 @@
+/* ---------- Code line numbers ---------- */
+body .markdown-source-view.mod-cm6 .cm-content .cm-line.HyperMD-codeblock,
+.markdown-rendered pre:has(> .craft-code-gutter) {
+  --craft-code-gutter-width: calc(36px + max(0, var(--craft-code-digits, 1) - 2) * 8px);
+  padding-left: calc(var(--craft-code-gutter-width) + 10.5px);
+}
+
+body .markdown-source-view.mod-cm6 .cm-content .cm-line.HyperMD-codeblock::before {
+  content: attr(data-craft-ln);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: var(--craft-code-gutter-width);
+  padding-right: 9.5px;
+  border-right: 1px solid var(--craft-block-border);
+  background: var(--craft-code-gutter);
+  color: var(--craft-code-number);
+  font-family: var(--font-monospace);
+  font-size: var(--code-size);
+  line-height: var(--craft-code-line, 19.75px);
+  text-align: right;
+  pointer-events: none;
+  user-select: none;
+}
+
+body .markdown-source-view.mod-cm6 .cm-content .cm-line.HyperMD-codeblock-begin::before {
+  border-top-left-radius: calc(var(--craft-row-radius) - 1px);
+}
+
+body .markdown-source-view.mod-cm6 .cm-content .cm-line.HyperMD-codeblock-end::before {
+  border-bottom-left-radius: calc(var(--craft-row-radius) - 1px);
+}
+
+.markdown-rendered pre:has(> .craft-code-gutter) {
+  position: relative;
+}
+
+.craft-code-gutter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: var(--craft-code-gutter-width);
+  border-right: 1px solid var(--craft-block-border);
+  border-radius: calc(var(--craft-row-radius) - 1px) 0 0 calc(var(--craft-row-radius) - 1px);
+  background: var(--craft-code-gutter);
+  pointer-events: none;
+  user-select: none;
+}
+
+.craft-code-ln {
+  position: absolute;
+  right: 9.5px;
+  color: var(--craft-code-number);
+  font-family: var(--font-monospace);
+  font-size: var(--code-size);
+  line-height: var(--craft-code-line, 19.75px);
+}
+
+.craft-code-ln::before {
+  content: attr(data-n);
+}
+
+/* ---------- Sidebar document header ---------- */
+body:not(.is-mobile) .workspace-split.mod-left-split .workspace-tabs.mod-top .workspace-tab-header-container.craft-has-doc-header {
+  height: calc(157px + var(--craft-chrome-drop, 0px));
+  padding-top: calc(115px + var(--craft-chrome-drop, 0px));
+}
+
+.craft-doc-header {
+  position: absolute;
+  top: calc(54px + var(--craft-chrome-drop, 0px));
+  right: 24px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  height: 38px;
+  pointer-events: none;
+}
+
+/* Craft rules the header off from the segmented control, 4px wider than it on each side. */
+.craft-doc-header::after {
+  content: '';
+  position: absolute;
+  top: calc(100% + 10.5px);
+  right: -4px;
+  left: -4px;
+  height: 1px;
+  background: var(--craft-doc-rule);
+}
+
+.craft-doc-thumb {
+  flex: none;
+  align-self: flex-start;
+  width: 28px;
+  height: 36px;
+  margin-top: 0.5px;
+  border-radius: 4px;
+  background: var(--craft-doc-thumb-fill);
+  box-shadow: inset 0 0 0 0.5px var(--craft-doc-thumb-rim), 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.craft-doc-thumb svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.craft-doc-thumb-title {
+  fill: var(--craft-doc-thumb-title);
+}
+
+.craft-doc-thumb-line {
+  fill: var(--craft-doc-thumb-line);
+}
+
+.craft-doc-text {
+  min-width: 0;
+}
+
+.craft-doc-title,
+.craft-doc-subtitle {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.craft-doc-title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+  color: var(--text-normal);
+}
+
+.craft-doc-subtitle {
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--craft-crumb);
+}

@@ -1,0 +1,1188 @@
+/* Craft Style: an Obsidian theme modelled on the default look of the Craft app.
+   Page and text colours match Craft's "Original" preset.
+   Unofficial: not affiliated with or endorsed by Craft Docs. MIT licensed. */
+
+/* ---------- Tokens shared by both colour schemes ---------- */
+body {
+  --craft-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", "Apple Color Emoji", sans-serif;
+  --craft-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+
+  /* Defaults only: the fonts and font size under Settings > Appearance replace them.
+     Craft itself uses the system font at 15px. */
+  --font-interface-theme: var(--craft-sans);
+  --font-text-theme: var(--craft-sans);
+  --font-monospace-theme: var(--craft-mono);
+
+  --accent-h: 208;
+  --accent-s: 100%;
+  --accent-l: 50%;
+
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 14px;
+  --radius-xl: 18px;
+  --craft-page-radius: 18px;
+  --craft-row-radius: 10px;
+  --craft-spring: linear(0, 0.06 3%, 0.22 7%, 0.62 15%, 0.94 23%, 1.05 30%, 1.07 36%, 1.04 47%, 1 62%, 0.995 75%, 1);
+  --craft-spring-soft: linear(0, 0.06 3%, 0.22 7%, 0.62 15%, 0.92 23%, 1.02 30%, 1.035 36%, 1.02 47%, 1 62%, 0.998 75%, 1);
+  --craft-page-top-space: 116px;
+  /* Craft's top chrome sits this much lower than Obsidian's default header row. */
+  --craft-chrome-drop: 5.5px;
+
+  /* Type scale measured in Craft at its 15px body size: lines sit 23.5px apart and
+     paragraphs 35px apart. */
+  --line-height-normal: 1.567;
+  --craft-p-gap: 0.767;
+  --p-spacing: calc(var(--craft-p-gap) * 1em);
+  --file-line-width: 690px;
+  --bold-modifier: 300;
+
+  --inline-title-size: 1.412em;
+  --inline-title-weight: 700;
+  --inline-title-line-height: 1.19;
+  --inline-title-color: var(--text-normal);
+
+  --h1-size: 1.412em;
+  --h2-size: 1.294em;
+  --h3-size: 1.176em;
+  --h4-size: 1.059em;
+  --h5-size: 1em;
+  --h6-size: 1em;
+  --h1-weight: 700;
+  --h2-weight: 700;
+  --h3-weight: 600;
+  --h4-weight: 600;
+  --h5-weight: 600;
+  --h6-weight: 600;
+  --h1-line-height: 1.31;
+  --h2-line-height: 1.31;
+  --h3-line-height: 1.31;
+  --h4-line-height: 1.55;
+  --h1-color: var(--text-normal);
+  --h2-color: var(--text-normal);
+  --h3-color: var(--text-normal);
+  --h4-color: var(--text-normal);
+  --h5-color: var(--text-normal);
+  --h6-color: var(--text-normal);
+  --heading-formatting: var(--text-faint);
+
+  --craft-h1-gap-above: calc(var(--font-text-size) * 2.761);
+  --craft-h2-gap-above: calc(var(--font-text-size) * 2.094);
+  --craft-h3-gap-above: calc(var(--font-text-size) * 1.628);
+  --craft-h4-gap-above: calc(var(--font-text-size) * 0.894);
+  --craft-h1-gap-below: calc(var(--font-text-size) * 1.028);
+  --craft-h3-gap-below: calc(var(--font-text-size) * 0.761);
+  --craft-blank-line: calc(var(--font-text-size) * var(--line-height-normal));
+
+  /* Bullets are 6px discs 6px into the column, with the text 26.5px in. */
+  --list-indent: 1.767em;
+  --list-spacing: 0.15em;
+  --list-bullet-size: 0.4em;
+  --list-marker-color: color-mix(in srgb, var(--text-normal) 80%, transparent);
+  --indentation-guide-color: transparent;
+
+  --link-decoration: underline;
+  --link-external-decoration: underline;
+  --link-unresolved-decoration-style: dotted;
+  --hr-color: var(--background-modifier-border);
+  --hr-thickness: 1px;
+
+  --checkbox-size: 17px;
+  --checkbox-radius: 5px;
+  --checkbox-color: var(--interactive-accent);
+  --checkbox-color-hover: var(--interactive-accent-hover);
+  --checkbox-marker-color: var(--text-on-accent);
+
+  --blockquote-border-thickness: 3px;
+  --blockquote-border-color: var(--background-modifier-border-focus);
+  --blockquote-color: var(--text-muted);
+  --blockquote-font-style: normal;
+
+  --callout-radius: var(--radius-l);
+  --callout-padding: 14px 18px;
+  --code-radius: 6px;
+  --code-size: calc(var(--font-text-size) * 0.8667);
+  --craft-code-line: calc(var(--font-text-size) * 1.3167);
+  --code-normal: var(--craft-code-text, var(--text-normal));
+  --table-header-weight: 600;
+  --table-header-background: var(--background-primary-alt);
+
+  --nav-item-size: 13px;
+  --nav-item-color: var(--craft-nav-text);
+  --nav-item-color-hover: var(--text-normal);
+  --nav-item-color-active: var(--text-normal);
+  --nav-item-weight-active: 600;
+  --nav-item-background-hover: var(--background-modifier-hover);
+  --nav-item-background-active: var(--craft-selection);
+  --nav-item-background-selected: var(--craft-selection);
+  --nav-collapse-icon-color: var(--craft-nav-chevron);
+  --nav-item-padding: 6.5px 8px 6.5px 24px;
+  --nav-item-weight: 400;
+  --icon-color: var(--craft-nav-icon);
+  --tab-text-color: var(--craft-tab-text);
+  --tab-text-color-focused: var(--craft-tab-text);
+  --tab-text-color-active: var(--craft-tab-text-active);
+  --tab-text-color-focused-active: var(--craft-tab-text-active);
+  --tab-text-color-focused-active-current: var(--craft-tab-text-active);
+  --tab-font-size: 13px;
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: var(--craft-scrollbar);
+  --scrollbar-active-thumb-bg: var(--craft-scrollbar);
+  --nav-indentation-guide-color: transparent;
+  /* With the 4px padding and 1px guide this makes each level 16px, as in Craft. */
+  --nav-item-children-margin-start: 11px;
+
+  --titlebar-background: var(--background-secondary);
+  --titlebar-background-focused: var(--background-secondary);
+  --titlebar-border-width: 0;
+  --ribbon-background: var(--background-secondary);
+  --ribbon-background-collapsed: var(--background-secondary);
+  --tab-container-background: var(--background-secondary);
+  --tab-outline-width: 0;
+  --tab-divider-color: transparent;
+  --divider-color: transparent;
+  --divider-color-hover: var(--background-modifier-border-hover);
+  --status-bar-background: transparent;
+  --status-bar-border-width: 0;
+  --status-bar-text-color: var(--text-muted);
+
+  --modal-radius: var(--radius-xl);
+  --menu-radius: var(--radius-l);
+  --input-radius: var(--radius-m);
+  --button-radius: var(--radius-m);
+}
+
+/* ---------- Light ---------- */
+.theme-light {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f7f7f8;
+  --background-secondary: #f3f3f3;
+  --background-secondary-alt: #e8e8eb;
+  --background-modifier-border: rgba(31, 34, 37, 0.1);
+  --background-modifier-border-hover: rgba(31, 34, 37, 0.18);
+  --background-modifier-border-focus: rgba(31, 34, 37, 0.26);
+  --background-modifier-hover: rgba(31, 34, 37, 0.05);
+  --background-modifier-active-hover: rgba(0, 135, 255, 0.12);
+  --background-modifier-form-field: #ffffff;
+  --craft-selection: #ebebeb;
+  --craft-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.07);
+  --craft-hairline: rgba(0, 0, 0, 0.05);
+  --craft-tab-pill: #eaeaea;
+  --craft-tab-text: #939496;
+  --craft-tab-text-active: #1b1b1d;
+  --craft-segment-track: #dbdbdd;
+  --craft-segment-thumb: #f8f8f8;
+  --craft-header-button: #fafafa;
+  --craft-tab-edge: #e4e4e4;
+  --craft-header-edge: #f0f0f0;
+  --craft-lens-fill: rgba(0, 0, 0, 0.05);
+  --craft-lens-rim: 0 0 0 0.5px rgba(0, 0, 0, 0.2), inset 0 1px 0 #ffffff, inset 2px 0 3px -1px rgba(110, 160, 255, 0.4), inset -2px 0 3px -1px rgba(255, 190, 110, 0.4), 0 2px 6px rgba(0, 0, 0, 0.12);
+  --craft-block: #fbfbfc;
+  --craft-block-border: #e7e7e8;
+  --craft-code-gutter: #f8f8f8;
+  --craft-code-number: #bcbcbc;
+  --craft-image-card: #f9f9f9;
+  --craft-inline-code: #f7f7f8;
+  --craft-scrollbar: #c3c3c3;
+  --craft-nav-text: #444444;
+  --craft-nav-icon: #828284;
+  --craft-nav-chevron: #8d9196;
+  --craft-crumb: #a0a0a2;
+  --craft-doc-thumb-fill: #ffffff;
+  --craft-doc-thumb-rim: #d9d9d9;
+  --craft-doc-thumb-title: #919191;
+  --craft-doc-thumb-line: #c7c7c7;
+  --craft-doc-rule: #e8e8e8;
+  --craft-glass-fill: rgba(247, 247, 248, 0.72);
+  --craft-glass-rim: inset 0 0.5px 0 rgba(255, 255, 255, 0.85), inset 0 0 0 0.5px rgba(0, 0, 0, 0.08);
+  --craft-glass-drop: 0 14px 44px rgba(0, 0, 0, 0.16);
+
+  --text-normal: #1f2225;
+  --text-muted: #63676c;
+  --text-faint: #8d9196;
+  /* Craft blends links halfway between its accent and the text colour. */
+  --text-accent: #105592;
+  --text-accent-hover: #0087ff;
+  --text-on-accent: #ffffff;
+  --text-selection: rgba(0, 135, 255, 0.2);
+  --bold-color: #191b1e;
+  --italic-color: #1a1d20;
+  --checklist-done-color: rgba(31, 34, 37, 0.5);
+  --link-color: var(--text-accent);
+  --link-color-hover: var(--text-accent-hover);
+  --link-external-color: var(--text-accent);
+  --link-external-color-hover: var(--text-accent-hover);
+  --interactive-normal: #ffffff;
+  --interactive-hover: #f1f1f3;
+  --interactive-accent: #0087ff;
+  --interactive-accent-hover: #0076e0;
+  --checkbox-border-color: rgba(31, 34, 37, 0.3);
+  --checkbox-border-color-hover: rgba(31, 34, 37, 0.5);
+
+  --code-background: var(--craft-block);
+  --code-comment: #6c7076;
+  --code-function: #4b68c3;
+  --code-important: #b25620;
+  --code-keyword: #a549ab;
+  --code-operator: #63676c;
+  --code-property: #3a7380;
+  --code-punctuation: #63676c;
+  --code-string: #357b46;
+  --code-tag: #bb433a;
+  --code-value: #b25620;
+}
+
+/* ---------- Dark ---------- */
+.theme-dark {
+  --accent-h: 196;
+  --accent-l: 59%;
+  --background-primary: #222222;
+  --background-primary-alt: #292929;
+  --background-secondary: #262626;
+  --background-secondary-alt: #2e2e2e;
+  --background-modifier-border: rgba(244, 244, 244, 0.1);
+  --background-modifier-border-hover: rgba(244, 244, 244, 0.18);
+  --background-modifier-border-focus: rgba(244, 244, 244, 0.28);
+  --background-modifier-hover: rgba(244, 244, 244, 0.06);
+  --background-modifier-active-hover: rgba(46, 200, 255, 0.18);
+  --background-modifier-form-field: #2a2a2a;
+  --craft-selection: #2e2e2e;
+  --craft-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.07), 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.4);
+  --craft-hairline: rgba(255, 255, 255, 0.055);
+  --craft-tab-pill: #343434;
+  --craft-tab-text: #828282;
+  --craft-tab-text-active: #fefefe;
+  --craft-segment-track: #404143;
+  --craft-segment-thumb: #1f1f1f;
+  --craft-header-button: #282828;
+  --craft-tab-edge: transparent;
+  --craft-header-edge: transparent;
+  --craft-lens-fill: rgba(255, 255, 255, 0.06);
+  --craft-lens-rim: 0 0 0 0.5px rgba(255, 255, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.18), inset 2px 0 3px -1px rgba(110, 160, 255, 0.4), inset -2px 0 3px -1px rgba(255, 190, 110, 0.4), 0 2px 6px rgba(0, 0, 0, 0.4);
+  --craft-block: #252525;
+  --craft-block-border: #353535;
+  --craft-code-gutter: #282828;
+  --craft-code-number: #5e5e5e;
+  --craft-image-card: #282828;
+  --craft-inline-code: #292929;
+  --craft-scrollbar: #5e5e5e;
+  --craft-nav-text: #d3d3d3;
+  --craft-nav-icon: #939393;
+  --craft-nav-chevron: #a5a5a5;
+  --craft-crumb: #7d7d7d;
+  --craft-doc-thumb-fill: #3b3b3b;
+  --craft-doc-thumb-rim: #484848;
+  --craft-doc-thumb-title: #989898;
+  --craft-doc-thumb-line: #696969;
+  --craft-doc-rule: #2e2e2e;
+  --craft-glass-fill: rgba(46, 46, 46, 0.72);
+  --craft-glass-rim: inset 0 0.5px 0 rgba(255, 255, 255, 0.2), inset 0 0 0 0.5px rgba(255, 255, 255, 0.07);
+  --craft-glass-drop: 0 16px 48px rgba(0, 0, 0, 0.45);
+
+  --text-normal: #f4f4f4;
+  --craft-code-text: #d4d4d4;
+  --text-muted: #a0a0a0;
+  --text-faint: #7d7d7d;
+  --text-accent: #91defa;
+  --text-accent-hover: #2ec8ff;
+  --text-on-accent: #06202b;
+  --text-selection: rgba(46, 200, 255, 0.28);
+  --bold-color: #ffffff;
+  --italic-color: #ffffff;
+  --checklist-done-color: rgba(244, 244, 244, 0.5);
+  --link-color: var(--text-accent);
+  --link-color-hover: var(--text-accent-hover);
+  --link-external-color: var(--text-accent);
+  --link-external-color-hover: var(--text-accent-hover);
+  --interactive-normal: #2e2e2e;
+  --interactive-hover: #383838;
+  --interactive-accent: #2ec8ff;
+  --interactive-accent-hover: #5dd5ff;
+  --checkbox-border-color: rgba(244, 244, 244, 0.32);
+  --checkbox-border-color-hover: rgba(244, 244, 244, 0.55);
+
+  --code-background: var(--craft-block);
+  --code-comment: #8b8b8f;
+  --code-function: #8fa8f2;
+  --code-important: #eea06e;
+  --code-keyword: #dd93e2;
+  --code-operator: #a9a9ab;
+  --code-property: #7cc3d1;
+  --code-punctuation: #a9a9ab;
+  --code-string: #84cf97;
+  --code-tag: #f0897f;
+  --code-value: #eea06e;
+}
+
+/* ---------- Window chrome (desktop only: phones need the full width) ---------- */
+body:not(.is-mobile) .app-container,
+body:not(.is-mobile) .workspace-split.mod-root,
+body:not(.is-mobile) .workspace-split.mod-root .workspace-tab-container,
+body:not(.is-mobile) .workspace-split.mod-root .workspace-tabs .workspace-leaf {
+  background: var(--background-secondary);
+}
+
+/* Craft's page sits flush with its panels; only the bottom has a gap. */
+body:not(.is-mobile) .workspace-split.mod-root .workspace-tabs .workspace-leaf {
+  padding: 6px 0 8px;
+  box-sizing: border-box;
+}
+
+body:not(.is-mobile) .workspace:has(> .mod-left-split.is-sidedock-collapsed) .mod-root .workspace-leaf {
+  padding-left: 8px;
+}
+
+body:not(.is-mobile) .workspace:has(> .mod-right-split.is-sidedock-collapsed) .mod-root .workspace-leaf {
+  padding-right: 8px;
+}
+
+body:not(.is-mobile) .workspace-split.mod-root .workspace-leaf-content {
+  position: relative;
+  background: var(--background-primary);
+  border-radius: var(--craft-page-radius);
+  box-shadow: inset 0 0 0 1px var(--craft-hairline);
+  overflow: hidden;
+}
+
+/* Craft has no ribbon, so it stays tucked against the window edge until hovered. */
+body:not(.is-mobile) .workspace-ribbon.side-dock-ribbon.mod-primary {
+  position: absolute;
+  z-index: 30;
+  top: 92px;
+  bottom: 56px;
+  left: -40px;
+  width: 44px;
+  height: auto;
+  border-radius: 0 14px 14px 0;
+  background: var(--craft-glass-fill);
+  backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: var(--craft-glass-rim), var(--craft-glass-drop);
+  opacity: 0;
+  transition: left 320ms var(--craft-spring), opacity 140ms ease;
+}
+
+body:not(.is-mobile) .workspace-ribbon.side-dock-ribbon.mod-primary:hover {
+  left: 0;
+  opacity: 1;
+}
+
+/* ---------- Tab pills ---------- */
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header-container {
+  border: none;
+  background: var(--background-secondary);
+}
+
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs.mod-top:not(.mod-stacked) .workspace-tab-header-container {
+  height: calc(var(--header-height) + var(--craft-chrome-drop));
+  padding-top: var(--craft-chrome-drop);
+}
+
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header {
+  flex: 0 1 auto;
+  align-self: center;
+  height: 32px;
+  max-width: 220px;
+  margin-inline: 2px;
+  /* The pill is the tab itself, so its padding would push the label off centre. */
+  padding: 0;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+  transition: background-color 140ms ease;
+}
+
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header::before,
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header::after,
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header-inner::after {
+  display: none;
+}
+
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header-inner {
+  gap: 8px;
+  /* Full height, so the label centres on the pill and not 1.5px above it. */
+  height: 100%;
+  margin: 0;
+  border-radius: 999px;
+  padding: 0 19px 0 10px;
+  background: transparent;
+}
+
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header-inner-icon {
+  display: flex;
+  order: -2;
+  width: 16px;
+  color: var(--craft-tab-text);
+}
+
+/* The close button takes the icon's place on the current tab, as in Craft. */
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header-inner-close-button {
+  display: none;
+  order: -1;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: var(--craft-tab-text);
+}
+
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:is(.is-active, :hover) .workspace-tab-header-inner-icon {
+  display: none;
+}
+
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:is(.is-active, :hover) .workspace-tab-header-inner-close-button {
+  display: flex;
+}
+
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header:not(.is-active):hover {
+  background: var(--background-modifier-hover);
+}
+
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs:not(.mod-stacked) .workspace-tab-header.is-active {
+  background: var(--craft-tab-pill);
+  box-shadow: inset 0 0 0 1px var(--craft-tab-edge);
+}
+
+/* With the left sidebar collapsed the toggle moves here; keep it clear of the window controls. */
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs.mod-top-left-space:not(.mod-stacked) .workspace-tab-header-container {
+  padding-left: 92px;
+}
+
+/* Toggles that move into the root header when their sidebar collapses keep the place they had in
+   the dock, so they don't jump. */
+body:not(.is-mobile) .workspace .mod-root .workspace-tabs.mod-top-left-space .sidebar-toggle-button.mod-left {
+  margin-top: 1px;
+}
+
+/* Only where Obsidian pins the right one to the window corner (frameless macOS, main window);
+   elsewhere it stays in the header's flow. RTL keeps Obsidian's mirrored placement. */
+body.mod-macos.is-hidden-frameless:not(.is-popout-window):not(.is-mobile):not(.mod-rtl) .workspace .mod-root .workspace-tabs.mod-top-right-space .sidebar-toggle-button.mod-right {
+  top: calc(var(--craft-chrome-drop) + 1px);
+  right: 17.5px;
+}
+
+/* Clears the toggle's new place; outranks Obsidian's padding for it under the same conditions. */
+body.mod-macos.is-hidden-frameless:not(.is-popout-window):not(.is-mobile):not(.mod-rtl) .workspace .mod-root .workspace-tabs.mod-top-right-space:not(.mod-stacked) .workspace-tab-header-container {
+  padding-right: calc(58px + var(--frame-right-space, 0px));
+}
+
+/* Obsidian places the macOS window controls at (offset / 2 - 8) points, plus 2 across. These
+   put the close button at (19, 19), where Craft has it. Popouts keep their own placement. */
+body.mod-macos:not(.is-mobile):not(.is-popout-window) {
+  --traffic-lights-offset-x: 50px;
+  --traffic-lights-offset-y: 54px;
+}
+
+/* ---------- Sidebar headers: a segmented control below the window controls ---------- */
+/* Outranks Obsidian's padding for the window controls, which this layout clears from above.
+   Limited to the side docks: the root pane takes these classes too once a sidebar collapses. */
+body:not(.is-mobile) .workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tabs.mod-top-left-space .workspace-tab-header-container,
+body:not(.is-mobile) .workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tabs.mod-top-right-space .workspace-tab-header-container {
+  position: relative;
+  height: calc(90px + var(--craft-chrome-drop));
+  padding: calc(46px + var(--craft-chrome-drop)) 24px 12px 20px;
+  border: none;
+  background: var(--background-secondary);
+}
+
+body:not(.is-mobile) .workspace-split:is(.mod-left-split, .mod-right-split) .workspace-tabs.mod-top-right-space .workspace-tab-header-container {
+  padding: calc(46px + var(--craft-chrome-drop)) 14px 12px;
+  box-shadow: inset 0 -1px 0 var(--craft-hairline);
+}
+
+/* Centres the toggle icons on the window controls, 26pt down, as in Craft, which keeps the
+   left one at the far end of the sidebar and the right one 31.5px from the window edge. */
+body:not(.is-mobile) .mod-left-split .workspace-tab-header-container .sidebar-toggle-button.mod-left {
+  position: absolute;
+  top: 6.5px;
+  right: 18.5px;
+}
+
+body:not(.is-mobile) .mod-right-split .workspace-tab-header-container .sidebar-toggle-button.mod-right {
+  position: absolute;
+  top: 6.5px;
+  right: 17.5px;
+}
+
+/* Craft's toggle glyph: a wide panel outline with three ticks in the narrow pane. */
+body:not(.is-mobile) .sidebar-toggle-button .clickable-icon {
+  color: var(--text-normal);
+}
+
+body:not(.is-mobile) .sidebar-toggle-button .clickable-icon svg {
+  display: none;
+}
+
+body:not(.is-mobile) .sidebar-toggle-button .clickable-icon::before {
+  content: "";
+  width: 18.5px;
+  height: 14.5px;
+  margin-block: 1px 0.5px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18.5 14.5' fill='none' stroke='%23000'%3E%3Crect x='.75' y='.75' width='17' height='13' rx='3' stroke-width='1.5'/%3E%3Cpath d='M6.6 1v12.5' stroke-width='1.25'/%3E%3Cpath d='M2.7 3.9h2M2.7 6h2M2.7 8.1h2' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tab-header-container .workspace-tab-header-spacer,
+body:not(.is-mobile) .mod-left-split .workspace-tab-header-container .workspace-tab-header-tab-list,
+body:not(.is-mobile) .mod-right-split .workspace-tab-header-container .workspace-tab-header-spacer,
+body:not(.is-mobile) .mod-right-split .workspace-tab-header-container .workspace-tab-header-tab-list {
+  display: none;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tab-header-container-inner {
+  position: relative;
+  anchor-scope: --craft-segment;
+  overflow: visible;
+  flex: 1 1 auto;
+  gap: 0;
+  height: 30px;
+  padding: 2px;
+  margin: 0;
+  border-radius: 999px;
+  background: var(--craft-segment-track);
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tab-header {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  height: 26px;
+  margin: 0;
+  border-radius: 999px;
+  background: transparent;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tab-header.is-active {
+  anchor-name: --craft-segment;
+  background: transparent;
+  box-shadow: none;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tab-header-inner {
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+}
+
+/* The thumb follows the active tab through anchor positioning, so it can spring across. */
+body:not(.is-mobile) .mod-left-split .workspace-tab-header-container-inner::after {
+  content: "";
+  position: absolute;
+  position-anchor: --craft-segment;
+  top: anchor(top);
+  bottom: anchor(bottom);
+  left: anchor(left);
+  right: anchor(right);
+  border-radius: 999px;
+  z-index: 0;
+  background: var(--craft-segment-thumb);
+  pointer-events: none;
+  /* Softer than the shared spring: the lens is wide enough to reach the window edge. */
+  transition: left 300ms var(--craft-spring-soft), right 300ms var(--craft-spring-soft);
+  animation-duration: 340ms;
+  animation-timing-function: cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+
+/* In flight the thumb lifts off the track as a clear lens, rising above the icons only
+   once it is clear enough to see them through. Each segment names its own copy of the
+   keyframes, because only a changed name restarts the animation. */
+body:not(.is-mobile) .mod-left-split .workspace-tab-header-container-inner:has(> .workspace-tab-header:nth-child(1).is-active)::after {
+  animation-name: craft-lens-1;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tab-header-container-inner:has(> .workspace-tab-header:nth-child(2).is-active)::after {
+  animation-name: craft-lens-2;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tab-header-container-inner:has(> .workspace-tab-header:nth-child(3).is-active)::after {
+  animation-name: craft-lens-3;
+}
+
+body:not(.is-mobile) .mod-left-split .workspace-tab-header-container-inner:has(> .workspace-tab-header:nth-child(4).is-active)::after {
+  animation-name: craft-lens-4;
+}
+
+@keyframes craft-lens-1 {
+  30%, 65% {
+    z-index: 0;
+  }
+
+  35%, 60% {
+    z-index: 2;
+    transform: scale(1.27, 1.42);
+    background-color: var(--craft-lens-fill);
+    box-shadow: var(--craft-lens-rim);
+    backdrop-filter: var(--craft-lens-backdrop, saturate(1.4) brightness(1.03));
+  }
+}
+
+@keyframes craft-lens-2 {
+  30%, 65% {
+    z-index: 0;
+  }
+
+  35%, 60% {
+    z-index: 2;
+    transform: scale(1.27, 1.42);
+    background-color: var(--craft-lens-fill);
+    box-shadow: var(--craft-lens-rim);
+    backdrop-filter: var(--craft-lens-backdrop, saturate(1.4) brightness(1.03));
+  }
+}
+
+@keyframes craft-lens-3 {
+  30%, 65% {
+    z-index: 0;
+  }
+
+  35%, 60% {
+    z-index: 2;
+    transform: scale(1.27, 1.42);
+    background-color: var(--craft-lens-fill);
+    box-shadow: var(--craft-lens-rim);
+    backdrop-filter: var(--craft-lens-backdrop, saturate(1.4) brightness(1.03));
+  }
+}
+
+@keyframes craft-lens-4 {
+  30%, 65% {
+    z-index: 0;
+  }
+
+  35%, 60% {
+    z-index: 2;
+    transform: scale(1.27, 1.42);
+    background-color: var(--craft-lens-fill);
+    box-shadow: var(--craft-lens-rim);
+    backdrop-filter: var(--craft-lens-backdrop, saturate(1.4) brightness(1.03));
+  }
+}
+
+body:not(.is-mobile) .mod-right-split .workspace-tab-header {
+  background: transparent;
+  box-shadow: none;
+}
+
+body:not(.is-mobile) .mod-right-split .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-icon {
+  color: var(--craft-tab-text);
+}
+
+/* ---------- Floating header and scroll edge ---------- */
+@keyframes craft-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes craft-title-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] {
+  timeline-scope: --craft-page;
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-mode="source"] .cm-scroller,
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-mode="preview"] .markdown-preview-view {
+  scroll-timeline: --craft-page block;
+  padding-top: var(--craft-page-top-space);
+  /* Reserve the bar on both sides so the column stays on the page's centre. */
+  scrollbar-gutter: stable both-edges;
+}
+
+/* The page scrolls under its floating header, so the theme draws its scrollbar: a slim pill
+   that starts below the header's buttons instead of running up behind them. Resetting
+   scrollbar-color is what lets the ::-webkit-scrollbar rules apply. Like the other scrollbar
+   rules, it stands aside when native scrollbars are asked for. */
+body:not(.is-mobile):not(.native-scrollbars) .mod-root .workspace-leaf-content[data-mode="source"] .cm-scroller,
+body:not(.is-mobile):not(.native-scrollbars) .mod-root .workspace-leaf-content[data-mode="preview"] .markdown-preview-view {
+  scrollbar-color: auto;
+}
+
+body:not(.is-mobile):not(.native-scrollbars) .mod-root .workspace-leaf-content[data-mode="source"] .cm-scroller::-webkit-scrollbar,
+body:not(.is-mobile):not(.native-scrollbars) .mod-root .workspace-leaf-content[data-mode="preview"] .markdown-preview-view::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+  background: transparent;
+}
+
+body:not(.is-mobile):not(.native-scrollbars) .mod-root .workspace-leaf-content[data-mode="source"] .cm-scroller::-webkit-scrollbar-track,
+body:not(.is-mobile):not(.native-scrollbars) .mod-root .workspace-leaf-content[data-mode="preview"] .markdown-preview-view::-webkit-scrollbar-track {
+  margin-block: 60px 4px;
+  background: transparent;
+}
+
+body:not(.is-mobile):not(.native-scrollbars) .mod-root .workspace-leaf-content[data-mode="source"] .cm-scroller::-webkit-scrollbar-thumb,
+body:not(.is-mobile):not(.native-scrollbars) .mod-root .workspace-leaf-content[data-mode="preview"] .markdown-preview-view::-webkit-scrollbar-thumb {
+  min-height: 36px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-color: var(--craft-scrollbar);
+  background-clip: padding-box;
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header {
+  position: absolute;
+  z-index: 10;
+  inset: 0 0 auto;
+  height: 60px;
+  padding: 12px 10px 12px 11px;
+  border: none;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Page content blurs and dissolves into the page colour as it reaches the top edge. */
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 76px;
+  background: linear-gradient(to bottom, var(--background-primary) 12%, transparent 92%);
+  backdrop-filter: blur(9px);
+  mask-image: linear-gradient(to bottom, #000 58%, transparent);
+  pointer-events: none;
+  animation: craft-fade-in linear both;
+  animation-timeline: --craft-page;
+  animation-range: 0 44px;
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header > * {
+  position: relative;
+  pointer-events: auto;
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header .clickable-icon {
+  width: 40px;
+  height: 36px;
+  border-radius: 13px;
+  background: var(--craft-header-button);
+  box-shadow: inset 0 0 0 1px var(--craft-header-edge);
+  transition: background-color 140ms ease;
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header .clickable-icon:hover {
+  background: var(--craft-tab-pill);
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] :is(.view-header-nav-buttons, .view-actions) {
+  gap: 12px;
+}
+
+/* Craft's header has no overflow button. Obsidian always puts "More options" last, and its
+   menu stays available from a right-click on the tab. */
+body:not(.is-mobile) .view-header .view-actions > .view-action:last-child {
+  display: none;
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header-title-container {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: flex-start;
+  /* Puts the title's baseline 28px below the page's top edge and the folders 2px under it. */
+  top: 1.5px;
+  gap: 2px;
+  margin-left: 3px;
+}
+
+/* The title appears only once the page's own title has scrolled away.
+   With no inline title to take over from, the header keeps showing it. */
+body.show-inline-title:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"]:is([data-mode="source"]:has(.markdown-source-view .inline-title), [data-mode="preview"]:has(.markdown-preview-view .inline-title)) .view-header-title-container {
+  animation: craft-title-in linear both;
+  animation-timeline: --craft-page;
+  animation-range: 96px 140px;
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  color: var(--text-normal);
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header-title-parent {
+  align-items: center;
+  height: 15px;
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--craft-crumb);
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header-breadcrumb,
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header-breadcrumb-separator {
+  color: var(--craft-crumb);
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  font-size: 11px;
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header-breadcrumb::before {
+  content: "";
+  width: 11px;
+  height: 11px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Craft separates folders with a chevron and has none after the last. */
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header-breadcrumb-separator {
+  margin-inline: 5px;
+  padding: 0;
+  font-size: 0;
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header-breadcrumb-separator::after {
+  content: "\203A";
+  font-size: 12px;
+}
+
+body:not(.is-mobile) .mod-root .workspace-leaf-content[data-type="markdown"] .view-header-breadcrumb-separator:last-child {
+  display: none;
+}
+
+/* ---------- Page contents ---------- */
+.view-header {
+  border: none;
+  background: transparent;
+}
+
+.inline-title {
+  padding-bottom: 0.45em;
+  margin-bottom: 0.9em;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+/* Reading view uses Craft's heading gaps. Obsidian sets the gap after a paragraph
+   from --heading-spacing, so each level sets that as well as its own margin. */
+.markdown-rendered h1 { --heading-spacing: var(--craft-h1-gap-above); margin: var(--heading-spacing) 0 var(--craft-h1-gap-below); }
+.markdown-rendered h2 { --heading-spacing: var(--craft-h2-gap-above); margin: var(--heading-spacing) 0 var(--craft-h1-gap-below); }
+.markdown-rendered h3 { --heading-spacing: var(--craft-h3-gap-above); margin: var(--heading-spacing) 0 var(--craft-h3-gap-below); }
+.markdown-rendered h4 { --heading-spacing: var(--craft-h4-gap-above); margin: var(--heading-spacing) 0; }
+
+/* Craft has no blank lines: its paragraphs sit one paragraph gap apart. In live preview an
+   empty line of the note shrinks to that gap, so the editor keeps reading view's rhythm.
+   The child chain keeps this to the note's own lines, not a table cell being edited. */
+.markdown-source-view.mod-cm6.is-live-preview {
+  --craft-blank-line: calc(var(--font-text-size) * var(--craft-p-gap));
+}
+
+body .markdown-source-view.mod-cm6.is-live-preview > .cm-editor > .cm-scroller > .cm-sizer > .cm-contentContainer > .cm-content > .cm-line:not(.HyperMD-codeblock):has(> br:only-child) {
+  line-height: var(--craft-p-gap);
+}
+
+/* The editor already shows the blank lines around headings, so subtract one to land on the same gap. */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 { padding-block: max(0px, calc(var(--craft-h1-gap-above) - var(--craft-blank-line))) max(0px, calc(var(--craft-h1-gap-below) - var(--craft-blank-line))); }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 { padding-block: max(0px, calc(var(--craft-h2-gap-above) - var(--craft-blank-line))) max(0px, calc(var(--craft-h1-gap-below) - var(--craft-blank-line))); }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 { padding-block: max(0px, calc(var(--craft-h3-gap-above) - var(--craft-blank-line))) max(0px, calc(var(--craft-h3-gap-below) - var(--craft-blank-line))); }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-4 { padding-top: max(0px, calc(var(--craft-h4-gap-above) - var(--craft-blank-line))); }
+
+/* Craft draws links between notes with a heavier underline than web links. */
+.markdown-rendered a.internal-link,
+.cm-s-obsidian .cm-hmd-internal-link .cm-underline {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* Craft sets the disc 20.5px before the text and draws the second level hollow. */
+.markdown-rendered ul > li,
+.markdown-rendered ol > li {
+  margin-inline-start: var(--list-indent);
+}
+
+/* Every item sits the same distance from the one before it, nested or not, and a list
+   starts one paragraph gap after the text above it. */
+.markdown-preview-sizer > div > :is(ul, ol) {
+  margin-block: calc(var(--list-spacing) * -1);
+}
+
+.markdown-preview-sizer > div:has(> :is(ul, ol)) + div > :is(ul, ol) {
+  margin-block-start: var(--list-spacing);
+}
+
+.markdown-rendered li > :is(ul, ol) {
+  margin-block: var(--list-spacing) calc(var(--list-spacing) * -1);
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .cm-line:not(.HyperMD-list-line) + .cm-line.HyperMD-list-line {
+  padding-top: 0;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .cm-line.HyperMD-list-line:has(+ .cm-line:not(.HyperMD-list-line)) {
+  padding-bottom: 0;
+}
+
+.markdown-rendered ul > li > .list-bullet {
+  margin-inline-start: -1.367em;
+}
+
+/* The editor's marker is the hidden hyphen and the space after it. A box of the list
+   indent's width puts the text where reading view does, whatever the font's space width. */
+.markdown-source-view.mod-cm6.is-live-preview {
+  --list-indent-editing: 0.2em;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .cm-formatting-list-ul,
+.markdown-source-view.mod-cm6.is-live-preview .cm-formatting-list-ol {
+  display: inline-block;
+  box-sizing: border-box;
+  text-indent: 0;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .cm-formatting-list-ul {
+  width: var(--list-indent);
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .cm-formatting-list-ol {
+  min-width: var(--list-indent);
+  text-align: end;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .cm-formatting-list-ul .list-bullet {
+  width: var(--list-bullet-size);
+}
+
+/* A checkbox hangs in the same place in both views, with its text on the list indent. */
+.markdown-source-view.mod-cm6.is-live-preview {
+  --checkbox-margin-inline-start: calc(var(--list-indent) + 0.25em - var(--checkbox-size) * 1.5);
+}
+
+.markdown-rendered .task-list-item-checkbox {
+  margin-inline-end: calc(var(--checkbox-size) * 0.5);
+}
+
+.markdown-rendered ul ul > li > .list-bullet::after,
+.markdown-source-view.mod-cm6 .cm-formatting-list-ul.cm-list-2 .list-bullet::after {
+  border: 1px solid var(--list-marker-color);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.markdown-rendered ul ul ul > li > .list-bullet::after {
+  border: none;
+  background: var(--list-marker-color);
+}
+
+/* `body` prefixes outrank CSS snippets that set the editor's line height. */
+body .markdown-source-view.mod-cm6 .cm-line {
+  line-height: var(--line-height-normal);
+}
+
+body .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 { line-height: var(--h1-line-height); }
+body .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 { line-height: var(--h2-line-height); }
+body .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 { line-height: var(--h3-line-height); }
+body .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-4 { line-height: var(--h4-line-height); }
+body .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-5 { line-height: var(--h5-line-height); }
+body .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-6 { line-height: var(--h6-line-height); }
+
+/* Inline code is a hairline pill at 14px beside 15px text; block code below is 13px. */
+body .cm-s-obsidian .cm-inline-code,
+body .markdown-rendered :not(pre) > code {
+  padding: 1px 4px;
+  border: 1px solid var(--craft-block-border);
+  border-radius: 5px;
+  background: var(--craft-inline-code);
+  font-family: var(--font-monospace) !important;
+  font-size: calc(var(--font-text-size) * 0.9333) !important;
+  color: var(--text-normal) !important;
+}
+
+/* Blocks run 5px past the text column on each side. */
+.markdown-rendered pre {
+  margin-inline: -5px;
+  padding: 14px 18px;
+  /* The block's own font has to match the code's, or their baselines stretch each row. */
+  font-family: var(--font-monospace);
+  font-size: var(--code-size);
+  line-height: var(--craft-code-line);
+  border: 1px solid var(--craft-block-border);
+  border-radius: var(--craft-row-radius);
+}
+
+.markdown-rendered pre code {
+  line-height: var(--craft-code-line);
+}
+
+body .markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+  margin-inline: -5px;
+  padding-inline: 18px;
+  line-height: var(--craft-code-line);
+  border-inline: 1px solid var(--craft-block-border);
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-codeblock-begin {
+  border-top: 1px solid var(--craft-block-border);
+  border-top-left-radius: var(--craft-row-radius);
+  border-top-right-radius: var(--craft-row-radius);
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-codeblock-end {
+  border-bottom: 1px solid var(--craft-block-border);
+  border-bottom-left-radius: var(--craft-row-radius);
+  border-bottom-right-radius: var(--craft-row-radius);
+}
+
+/* Images sit centred on a hairline card as wide as the column. */
+.markdown-rendered .internal-embed.image-embed,
+.markdown-source-view .internal-embed.image-embed {
+  display: block;
+  margin-inline: -4px;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  background: var(--craft-image-card);
+  text-align: center;
+  line-height: 0;
+  overflow: hidden;
+}
+
+.markdown-rendered table {
+  border-radius: var(--radius-m);
+}
+
+/* ---------- Sidebars ---------- */
+body .nav-file-title,
+body .nav-folder-title,
+body .tree-item-self {
+  border-radius: var(--craft-row-radius);
+  font-family: var(--font-interface);
+  font-size: var(--nav-item-size);
+  transition: background-color 140ms ease;
+}
+
+/* Rows are 31px on a 32px pitch and end 18.5px short of the page, as in Craft's folder list. */
+body:not(.is-mobile) .nav-files-container {
+  padding: 4px 18.5px 12px 9px;
+}
+
+body:not(.is-mobile) .nav-files-container .tree-item-self {
+  margin-bottom: 1px;
+}
+
+body:not(.is-mobile) .nav-files-container .collapse-icon svg {
+  width: 9px;
+  height: 9px;
+  translate: -0.5px;
+}
+
+/* Every row carries an icon 12.5px after its chevron, with the name 10px further on. The
+   icon plugin sets its own margin inline. */
+body:not(.is-mobile) .nav-files-container .iconize-icon {
+  margin: 0 8px 0 -4px !important;
+}
+
+/* The label clips its overflow, so the label moves out to the icon column rather than the icon. */
+body:not(.is-mobile) .nav-files-container :is(.nav-folder-title, .nav-file-title):not(:has(> .iconize-icon)) > .tree-item-inner {
+  margin-inline-start: -4px;
+}
+
+body:not(.is-mobile) .nav-files-container :is(.nav-folder-title, .nav-file-title):not(:has(> .iconize-icon)) > .tree-item-inner::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-inline: 0 8px;
+  vertical-align: -4px;
+  background: var(--craft-nav-icon);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z'/%3E%3C/svg%3E") center / 17px no-repeat;
+}
+
+/* Documents get a small page in place of the folder. */
+body:not(.is-mobile) .nav-files-container .nav-file-title:not(:has(> .iconize-icon)) > .tree-item-inner::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 18' fill='none' stroke='%23000'%3E%3Crect x='.5' y='.5' width='15' height='17' rx='3' stroke-opacity='.8'/%3E%3Cpath d='M3.5 4.5h4.5M3.5 7h9M3.5 9h9M3.5 11h9M3.5 13h6' stroke-opacity='.5'/%3E%3C/svg%3E");
+  mask-size: 16px 18px;
+}
+
+body .mod-right-split .tree-item-self {
+  font-size: 13px;
+}
+
+.workspace-sidedock-vault-profile {
+  border: none;
+  box-shadow: inset 0 1px 0 var(--craft-hairline);
+}
+
+/* Slim pill scrollbars inset from the edge. */
+body:not(.native-scrollbars) ::-webkit-scrollbar {
+  width: 11px;
+}
+
+body:not(.native-scrollbars) ::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+}
+
+/* ---------- Glass surfaces ---------- */
+@keyframes craft-pop {
+  from { opacity: 0; transform: translateY(4px) scale(0.97); }
+}
+
+.menu,
+.popover,
+.suggestion-container,
+.prompt,
+.modal {
+  background: var(--craft-glass-fill);
+  backdrop-filter: blur(26px) saturate(180%);
+  border: none;
+  box-shadow: var(--craft-glass-rim), var(--craft-glass-drop);
+  animation: craft-pop 260ms var(--craft-spring) backwards;
+}
+
+.prompt,
+.popover,
+.suggestion-container {
+  border-radius: var(--radius-l);
+}
+
+/* Like Craft's Assistant button: a compact pill that opens up to show the rest. */
+body:not(.is-mobile) .workspace-split.mod-root {
+  anchor-name: --craft-root;
+}
+
+body:not(.is-mobile) .status-bar {
+  position: fixed;
+  z-index: 20;
+  position-anchor: --craft-root;
+  right: calc(anchor(right) + 10px);
+  bottom: calc(anchor(bottom) + 18px);
+  left: auto;
+  height: 36px;
+  padding: 0 8px;
+  border: none;
+  border-radius: 14px;
+  background: var(--craft-glass-fill);
+  backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: var(--craft-glass-rim);
+  color: var(--text-muted);
+}
+
+body:not(.is-mobile) .status-bar .status-bar-item {
+  max-width: 0;
+  padding-inline: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 320ms var(--craft-spring), padding 320ms var(--craft-spring), opacity 160ms ease;
+}
+
+body:not(.is-mobile) .status-bar .status-bar-item.plugin-word-count,
+body:not(.is-mobile) .status-bar:hover .status-bar-item {
+  max-width: 260px;
+  padding-inline: 6px;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}
